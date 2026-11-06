@@ -17,6 +17,18 @@ public class EtudiantDAO
         return liste;
     }
 
+    // Liste pour l'écran (classe et statut de l'année active)
+    public DataTable GetListe()
+    {
+        var dt = new DataTable();
+        using var cn = DbConnexion.Creer();
+        using var da = new SqlDataAdapter(
+            "SELECT idEtudiant, matricule, nom, prenoms, email, classe, statutInscription " +
+            "FROM vEtudiantsListe ORDER BY nom, prenoms", cn);
+        da.Fill(dt);
+        return dt;
+    }
+
     public Etudiant GetById(int id)
     {
         using var cn = DbConnexion.Creer();
