@@ -36,6 +36,7 @@ partial class FrmInscriptionDetail
         lblTitreFiche.ForeColor = Color.FromArgb(27, 20, 22);
         lblTitreFiche.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
         lblTitreFiche.Name = "lblTitreFiche";
+        lblTitreFiche.Tag = "texte";
         lblTitreFiche.TabIndex = 0;
         //
         // lblEtudiant
@@ -47,6 +48,7 @@ partial class FrmInscriptionDetail
         lblEtudiant.ForeColor = Color.FromArgb(27, 20, 22);
         lblEtudiant.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblEtudiant.Name = "lblEtudiant";
+        lblEtudiant.Tag = "texte";
         lblEtudiant.TabIndex = 1;
         //
         // cboEtudiant
@@ -56,6 +58,7 @@ partial class FrmInscriptionDetail
         cboEtudiant.Location = new Point(24, 88);
         cboEtudiant.Size = new Size(432, 28);
         cboEtudiant.Name = "cboEtudiant";
+        cboEtudiant.Tag = "input";
         cboEtudiant.TabIndex = 2;
         //
         // lblClasse
@@ -67,6 +70,7 @@ partial class FrmInscriptionDetail
         lblClasse.ForeColor = Color.FromArgb(27, 20, 22);
         lblClasse.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblClasse.Name = "lblClasse";
+        lblClasse.Tag = "texte";
         lblClasse.TabIndex = 3;
         //
         // cboClasse
@@ -76,6 +80,7 @@ partial class FrmInscriptionDetail
         cboClasse.Location = new Point(24, 158);
         cboClasse.Size = new Size(432, 28);
         cboClasse.Name = "cboClasse";
+        cboClasse.Tag = "input";
         cboClasse.TabIndex = 4;
         //
         // lblFrais
@@ -87,6 +92,7 @@ partial class FrmInscriptionDetail
         lblFrais.ForeColor = Color.FromArgb(27, 20, 22);
         lblFrais.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblFrais.Name = "lblFrais";
+        lblFrais.Tag = "texte";
         lblFrais.TabIndex = 5;
         //
         // numFrais
@@ -98,6 +104,7 @@ partial class FrmInscriptionDetail
         numFrais.Size = new Size(200, 26);
         numFrais.ThousandsSeparator = true;
         numFrais.Name = "numFrais";
+        numFrais.Tag = "input";
         numFrais.TabIndex = 6;
         //
         // chkValider
@@ -107,6 +114,7 @@ partial class FrmInscriptionDetail
         chkValider.Location = new Point(24, 276);
         chkValider.Text = "Valider immédiatement";
         chkValider.Name = "chkValider";
+        chkValider.Tag = "texte";
         chkValider.TabIndex = 7;
         //
         // lblErreur
@@ -140,6 +148,7 @@ partial class FrmInscriptionDetail
         btnAnnuler.Text = "Annuler";
         btnAnnuler.UseVisualStyleBackColor = false;
         btnAnnuler.Name = "btnAnnuler";
+        btnAnnuler.Tag = "secondaire";
         btnAnnuler.TabIndex = 10;
         //
         // FrmInscriptionDetail
@@ -154,6 +163,7 @@ partial class FrmInscriptionDetail
         ShowInTaskbar = false;
         StartPosition = FormStartPosition.CenterParent;
         Text = "Nouvelle inscription";
+        Tag = "carte";
         Name = "FrmInscriptionDetail";
         Controls.Add(lblTitreFiche);
         Controls.Add(lblEtudiant);

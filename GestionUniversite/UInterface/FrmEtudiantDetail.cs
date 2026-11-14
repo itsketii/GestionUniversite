@@ -16,6 +16,7 @@ public partial class FrmEtudiantDetail : Form
     public FrmEtudiantDetail(Etudiant etudiant)
     {
         InitializeComponent();
+        Theme.Appliquer(this);
         dtpNaissance.MaxDate = DateTime.Today;
         _etudiant = etudiant ?? new Etudiant();
 

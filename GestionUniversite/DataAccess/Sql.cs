@@ -27,4 +27,23 @@ internal static class Sql
         cn.Open();
         return cmd.ExecuteNonQuery();
     }
+
+    // Requête SQL paramétrée (INSERT, UPDATE, DELETE)
+    public static int Executer(string sql, params SqlParameter[] parametres)
+    {
+        using var cn = DbConnexion.Creer();
+        using var cmd = new SqlCommand(sql, cn);
+        cmd.Parameters.AddRange(parametres);
+        cn.Open();
+        return cmd.ExecuteNonQuery();
+    }
+
+    public static object Valeur(string sql, params SqlParameter[] parametres)
+    {
+        using var cn = DbConnexion.Creer();
+        using var cmd = new SqlCommand(sql, cn);
+        cmd.Parameters.AddRange(parametres);
+        cn.Open();
+        return cmd.ExecuteScalar();
+    }
 }

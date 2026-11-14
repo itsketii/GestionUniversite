@@ -5,13 +5,13 @@ namespace GestionUniversite.DataAccess;
 // Listes pour alimenter les listes déroulantes
 public static class ReferentielDAO
 {
-    private const string AnneeActive = "(SELECT idAnnee FROM AnneeAcademique WHERE estActive = 1)";
+    private const string AnneeActiveSql = "(SELECT idAnnee FROM AnneeAcademique WHERE estActive = 1)";
 
     public static DataTable Etudiants() => Sql.Table(
         "SELECT idEtudiant, matricule + N' - ' + nom + N' ' + prenoms AS libelle FROM Etudiant ORDER BY nom, prenoms");
 
     public static DataTable ClassesActives() => Sql.Table(
-        $"SELECT idClasse, libelle FROM Classe WHERE idAnnee = {AnneeActive} ORDER BY libelle");
+        $"SELECT idClasse, libelle FROM Classe WHERE idAnnee = {AnneeActiveSql} ORDER BY libelle");
 
     public static DataTable Filieres() => Sql.Table("SELECT idFiliere, codeFiliere, libelle FROM Filiere ORDER BY libelle");
 
@@ -32,4 +32,11 @@ public static class ReferentielDAO
     public static DataTable CoursParClasse(int idClasse) => Sql.Table(
         "SELECT idCours, matiere + N' - ' + enseignant AS libelle FROM vCoursListe WHERE idClasse = @idClasse ORDER BY matiere",
         Sql.P("@idClasse", idClasse));
+
+
+    public static string AnneeActive()
+    {
+        var dt = Sql.Table("SELECT libelle FROM AnneeAcademique WHERE estActive = 1");
+        return dt.Rows.Count == 0 ? "Aucune année active" : Convert.ToString(dt.Rows[0][0]);
+    }
 }

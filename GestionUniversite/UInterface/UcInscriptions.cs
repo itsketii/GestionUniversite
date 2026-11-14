@@ -29,22 +29,21 @@ public partial class UcInscriptions : UserControl
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Outils.Erreur(ex.Message);
         }
     }
 
     private void Filtrer()
     {
         if (_vue == null) return;
-        string t = new string(txtRecherche.Text.Trim().Where(c => "[]*%".IndexOf(c) < 0).ToArray()).Replace("'", "''");
+        string t = Outils.Nettoyer(txtRecherche.Text);
         _vue.RowFilter = t == "" ? "" : $"etudiant LIKE '%{t}%' OR classe LIKE '%{t}%' OR matricule LIKE '%{t}%'";
         lblNombre.Text = $"{_vue.Count} inscription(s)";
     }
 
     private int? IdSelectionne()
     {
-        if (dgvInscriptions.CurrentRow?.DataBoundItem is DataRowView ligne)
-            return (int)ligne["idInscription"];
+        if (dgvInscriptions.CurrentRow?.DataBoundItem is DataRowView ligne) return (int)ligne["idInscription"];
         return null;
     }
 
@@ -75,7 +74,43 @@ public partial class UcInscriptions : UserControl
 
     private void btnAnnulerInscription_Click(object sender, EventArgs e)
     {
-        if (MessageBox.Show("Annuler cette inscription ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+        if (!Outils.Confirmer("Annuler cette inscription ?")) return;
         Executer(id => _dao.Annuler(id));
     }
+
+    private DataRow LigneRecu()
+    {
+        int? id = IdSelectionne();
+        if (id == null) return null;
+        try
+        {
+            return _dao.GetRecu(id.Value);
+        }
+        catch (Exception ex)
+        {
+            Outils.Erreur(ex.Message);
+            return null;
+        }
+    }
+
+    private void btnRecu_Click(object sender, EventArgs e)
+    {
+        var ligne = LigneRecu();
+        if (ligne != null) Impression.Apercu(FindForm(), Impression.DocumentRecu(ligne));
+    }
+
+    private void btnRecuPdf_Click(object sender, EventArgs e)
+    {
+        var ligne = LigneRecu();
+        if (ligne != null) Impression.Pdf(FindForm(), Impression.DocumentRecu(ligne), "recu_" + ligne["matricule"]);
+    }
+
+    private Rapport NouveauRapport() => Rapport.DepuisGrille(dgvInscriptions, "Liste des inscriptions",
+        "Année académique " + ReferentielDAO.AnneeActive() + " · " + (_vue?.Count ?? 0) + " inscription(s)");
+
+    private void btnExporter_Click(object sender, EventArgs e) => Exports.CsvDepuisGrille(dgvInscriptions, FindForm(), "inscriptions");
+
+    private void btnImprimer_Click(object sender, EventArgs e) => Impression.Apercu(FindForm(), NouveauRapport().CreerDocument());
+
+    private void btnPdf_Click(object sender, EventArgs e) => Impression.Pdf(FindForm(), NouveauRapport().CreerDocument(), "inscriptions");
 }

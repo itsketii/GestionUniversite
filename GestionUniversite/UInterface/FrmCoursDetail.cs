@@ -14,6 +14,7 @@ public partial class FrmCoursDetail : Form
     public FrmCoursDetail(int idClasse)
     {
         InitializeComponent();
+        Theme.Appliquer(this);
         _idClasse = idClasse;
         if (Outils.EstDesigner) return;
         Outils.Lier(cboMatiere, ReferentielDAO.Matieres(), "libelle", "idMatiere");

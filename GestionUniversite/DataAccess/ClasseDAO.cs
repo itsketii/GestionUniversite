@@ -21,4 +21,11 @@ public class ClasseDAO
         Sql.P("@volumeHoraire", volumeHoraire));
 
     public void RetirerCours(int idCours) => Sql.Proc("SP_Cours_Delete", Sql.P("@idCours", idCours));
+
+
+    // Étudiants inscrits (validés) dans une classe, pour la liste imprimable
+    public DataTable ListeEtudiants(int idClasse) => Sql.Table(
+        "SELECT e.matricule, e.nom, e.prenoms, e.email FROM Inscription i " +
+        "JOIN Etudiant e ON e.idEtudiant = i.idEtudiant WHERE i.idClasse = @id AND i.statut = N'Validée' ORDER BY e.nom, e.prenoms",
+        Sql.P("@id", idClasse));
 }

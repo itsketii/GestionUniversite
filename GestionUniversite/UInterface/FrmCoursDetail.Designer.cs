@@ -35,6 +35,7 @@ partial class FrmCoursDetail
         lblTitreFiche.ForeColor = Color.FromArgb(27, 20, 22);
         lblTitreFiche.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
         lblTitreFiche.Name = "lblTitreFiche";
+        lblTitreFiche.Tag = "texte";
         lblTitreFiche.TabIndex = 0;
         //
         // lblMatiere
@@ -46,6 +47,7 @@ partial class FrmCoursDetail
         lblMatiere.ForeColor = Color.FromArgb(27, 20, 22);
         lblMatiere.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblMatiere.Name = "lblMatiere";
+        lblMatiere.Tag = "texte";
         lblMatiere.TabIndex = 1;
         //
         // cboMatiere
@@ -55,6 +57,7 @@ partial class FrmCoursDetail
         cboMatiere.Location = new Point(24, 88);
         cboMatiere.Size = new Size(432, 28);
         cboMatiere.Name = "cboMatiere";
+        cboMatiere.Tag = "input";
         cboMatiere.TabIndex = 2;
         //
         // lblEnseignant
@@ -66,6 +69,7 @@ partial class FrmCoursDetail
         lblEnseignant.ForeColor = Color.FromArgb(27, 20, 22);
         lblEnseignant.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblEnseignant.Name = "lblEnseignant";
+        lblEnseignant.Tag = "texte";
         lblEnseignant.TabIndex = 3;
         //
         // cboEnseignant
@@ -75,6 +79,7 @@ partial class FrmCoursDetail
         cboEnseignant.Location = new Point(24, 156);
         cboEnseignant.Size = new Size(432, 28);
         cboEnseignant.Name = "cboEnseignant";
+        cboEnseignant.Tag = "input";
         cboEnseignant.TabIndex = 4;
         //
         // lblVolume
@@ -86,6 +91,7 @@ partial class FrmCoursDetail
         lblVolume.ForeColor = Color.FromArgb(27, 20, 22);
         lblVolume.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblVolume.Name = "lblVolume";
+        lblVolume.Tag = "texte";
         lblVolume.TabIndex = 5;
         //
         // numVolume
@@ -97,6 +103,7 @@ partial class FrmCoursDetail
         numVolume.Size = new Size(160, 26);
         numVolume.Value = new decimal(new int[] { 30, 0, 0, 0 });
         numVolume.Name = "numVolume";
+        numVolume.Tag = "input";
         numVolume.TabIndex = 6;
         //
         // lblErreur
@@ -130,6 +137,7 @@ partial class FrmCoursDetail
         btnAnnuler.Text = "Annuler";
         btnAnnuler.UseVisualStyleBackColor = false;
         btnAnnuler.Name = "btnAnnuler";
+        btnAnnuler.Tag = "secondaire";
         btnAnnuler.TabIndex = 9;
         //
         // FrmCoursDetail
@@ -144,6 +152,7 @@ partial class FrmCoursDetail
         ShowInTaskbar = false;
         StartPosition = FormStartPosition.CenterParent;
         Text = "Ajouter un cours";
+        Tag = "carte";
         Name = "FrmCoursDetail";
         Controls.Add(lblTitreFiche);
         Controls.Add(lblMatiere);

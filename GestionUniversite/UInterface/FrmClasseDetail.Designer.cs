@@ -38,6 +38,7 @@ partial class FrmClasseDetail
         lblTitreFiche.ForeColor = Color.FromArgb(27, 20, 22);
         lblTitreFiche.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
         lblTitreFiche.Name = "lblTitreFiche";
+        lblTitreFiche.Tag = "texte";
         lblTitreFiche.TabIndex = 0;
         //
         // lblFiliere
@@ -49,6 +50,7 @@ partial class FrmClasseDetail
         lblFiliere.ForeColor = Color.FromArgb(27, 20, 22);
         lblFiliere.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblFiliere.Name = "lblFiliere";
+        lblFiliere.Tag = "texte";
         lblFiliere.TabIndex = 1;
         //
         // cboFiliere
@@ -58,6 +60,7 @@ partial class FrmClasseDetail
         cboFiliere.Location = new Point(24, 88);
         cboFiliere.Size = new Size(432, 28);
         cboFiliere.Name = "cboFiliere";
+        cboFiliere.Tag = "input";
         cboFiliere.TabIndex = 2;
         //
         // lblNiveau
@@ -69,6 +72,7 @@ partial class FrmClasseDetail
         lblNiveau.ForeColor = Color.FromArgb(27, 20, 22);
         lblNiveau.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblNiveau.Name = "lblNiveau";
+        lblNiveau.Tag = "texte";
         lblNiveau.TabIndex = 3;
         //
         // cboNiveau
@@ -78,6 +82,7 @@ partial class FrmClasseDetail
         cboNiveau.Location = new Point(24, 156);
         cboNiveau.Size = new Size(208, 28);
         cboNiveau.Name = "cboNiveau";
+        cboNiveau.Tag = "input";
         cboNiveau.TabIndex = 4;
         //
         // lblAnnee
@@ -89,6 +94,7 @@ partial class FrmClasseDetail
         lblAnnee.ForeColor = Color.FromArgb(27, 20, 22);
         lblAnnee.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblAnnee.Name = "lblAnnee";
+        lblAnnee.Tag = "texte";
         lblAnnee.TabIndex = 5;
         //
         // cboAnnee
@@ -98,6 +104,7 @@ partial class FrmClasseDetail
         cboAnnee.Location = new Point(248, 156);
         cboAnnee.Size = new Size(208, 28);
         cboAnnee.Name = "cboAnnee";
+        cboAnnee.Tag = "input";
         cboAnnee.TabIndex = 6;
         //
         // lblLibelle
@@ -109,6 +116,7 @@ partial class FrmClasseDetail
         lblLibelle.ForeColor = Color.FromArgb(27, 20, 22);
         lblLibelle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblLibelle.Name = "lblLibelle";
+        lblLibelle.Tag = "texte";
         lblLibelle.TabIndex = 7;
         //
         // txtLibelle
@@ -117,6 +125,7 @@ partial class FrmClasseDetail
         txtLibelle.Location = new Point(24, 224);
         txtLibelle.Size = new Size(432, 26);
         txtLibelle.Name = "txtLibelle";
+        txtLibelle.Tag = "input";
         txtLibelle.TabIndex = 8;
         //
         // lblAide
@@ -128,6 +137,7 @@ partial class FrmClasseDetail
         lblAide.ForeColor = Color.FromArgb(107, 96, 99);
         lblAide.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
         lblAide.Name = "lblAide";
+        lblAide.Tag = "discret";
         lblAide.TabIndex = 9;
         //
         // lblErreur
@@ -161,6 +171,7 @@ partial class FrmClasseDetail
         btnAnnuler.Text = "Annuler";
         btnAnnuler.UseVisualStyleBackColor = false;
         btnAnnuler.Name = "btnAnnuler";
+        btnAnnuler.Tag = "secondaire";
         btnAnnuler.TabIndex = 12;
         //
         // FrmClasseDetail
@@ -175,6 +186,7 @@ partial class FrmClasseDetail
         ShowInTaskbar = false;
         StartPosition = FormStartPosition.CenterParent;
         Text = "Nouvelle classe";
+        Tag = "carte";
         Name = "FrmClasseDetail";
         Controls.Add(lblTitreFiche);
         Controls.Add(lblFiliere);

@@ -43,6 +43,7 @@ partial class FrmSeanceDetail
         lblTitreFiche.ForeColor = Color.FromArgb(27, 20, 22);
         lblTitreFiche.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
         lblTitreFiche.Name = "lblTitreFiche";
+        lblTitreFiche.Tag = "texte";
         lblTitreFiche.TabIndex = 0;
         //
         // lblClasse
@@ -54,6 +55,7 @@ partial class FrmSeanceDetail
         lblClasse.ForeColor = Color.FromArgb(27, 20, 22);
         lblClasse.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblClasse.Name = "lblClasse";
+        lblClasse.Tag = "texte";
         lblClasse.TabIndex = 1;
         //
         // cboClasse
@@ -63,6 +65,7 @@ partial class FrmSeanceDetail
         cboClasse.Location = new Point(24, 88);
         cboClasse.Size = new Size(472, 28);
         cboClasse.Name = "cboClasse";
+        cboClasse.Tag = "input";
         cboClasse.TabIndex = 2;
         //
         // lblCours
@@ -74,6 +77,7 @@ partial class FrmSeanceDetail
         lblCours.ForeColor = Color.FromArgb(27, 20, 22);
         lblCours.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblCours.Name = "lblCours";
+        lblCours.Tag = "texte";
         lblCours.TabIndex = 3;
         //
         // cboCours
@@ -83,6 +87,7 @@ partial class FrmSeanceDetail
         cboCours.Location = new Point(24, 158);
         cboCours.Size = new Size(472, 28);
         cboCours.Name = "cboCours";
+        cboCours.Tag = "input";
         cboCours.TabIndex = 4;
         //
         // lblDate
@@ -94,6 +99,7 @@ partial class FrmSeanceDetail
         lblDate.ForeColor = Color.FromArgb(27, 20, 22);
         lblDate.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblDate.Name = "lblDate";
+        lblDate.Tag = "texte";
         lblDate.TabIndex = 5;
         //
         // dtpDate
@@ -103,6 +109,7 @@ partial class FrmSeanceDetail
         dtpDate.Location = new Point(24, 228);
         dtpDate.Size = new Size(224, 26);
         dtpDate.Name = "dtpDate";
+        dtpDate.Tag = "input";
         dtpDate.TabIndex = 6;
         //
         // lblType
@@ -114,6 +121,7 @@ partial class FrmSeanceDetail
         lblType.ForeColor = Color.FromArgb(27, 20, 22);
         lblType.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblType.Name = "lblType";
+        lblType.Tag = "texte";
         lblType.TabIndex = 7;
         //
         // cboType
@@ -124,6 +132,7 @@ partial class FrmSeanceDetail
         cboType.Location = new Point(272, 228);
         cboType.Size = new Size(224, 28);
         cboType.Name = "cboType";
+        cboType.Tag = "input";
         cboType.TabIndex = 8;
         //
         // lblDebut
@@ -135,6 +144,7 @@ partial class FrmSeanceDetail
         lblDebut.ForeColor = Color.FromArgb(27, 20, 22);
         lblDebut.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblDebut.Name = "lblDebut";
+        lblDebut.Tag = "texte";
         lblDebut.TabIndex = 9;
         //
         // dtpDebut
@@ -145,6 +155,7 @@ partial class FrmSeanceDetail
         dtpDebut.ShowUpDown = true;
         dtpDebut.Size = new Size(224, 26);
         dtpDebut.Name = "dtpDebut";
+        dtpDebut.Tag = "input";
         dtpDebut.TabIndex = 10;
         //
         // lblFin
@@ -156,6 +167,7 @@ partial class FrmSeanceDetail
         lblFin.ForeColor = Color.FromArgb(27, 20, 22);
         lblFin.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblFin.Name = "lblFin";
+        lblFin.Tag = "texte";
         lblFin.TabIndex = 11;
         //
         // dtpFin
@@ -166,6 +178,7 @@ partial class FrmSeanceDetail
         dtpFin.ShowUpDown = true;
         dtpFin.Size = new Size(224, 26);
         dtpFin.Name = "dtpFin";
+        dtpFin.Tag = "input";
         dtpFin.TabIndex = 12;
         //
         // lblSalle
@@ -177,6 +190,7 @@ partial class FrmSeanceDetail
         lblSalle.ForeColor = Color.FromArgb(27, 20, 22);
         lblSalle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblSalle.Name = "lblSalle";
+        lblSalle.Tag = "texte";
         lblSalle.TabIndex = 13;
         //
         // cboSalle
@@ -186,6 +200,7 @@ partial class FrmSeanceDetail
         cboSalle.Location = new Point(24, 368);
         cboSalle.Size = new Size(472, 28);
         cboSalle.Name = "cboSalle";
+        cboSalle.Tag = "input";
         cboSalle.TabIndex = 14;
         //
         // lblErreur
@@ -219,6 +234,7 @@ partial class FrmSeanceDetail
         btnAnnuler.Text = "Annuler";
         btnAnnuler.UseVisualStyleBackColor = false;
         btnAnnuler.Name = "btnAnnuler";
+        btnAnnuler.Tag = "secondaire";
         btnAnnuler.TabIndex = 17;
         //
         // FrmSeanceDetail
@@ -233,6 +249,7 @@ partial class FrmSeanceDetail
         ShowInTaskbar = false;
         StartPosition = FormStartPosition.CenterParent;
         Text = "Planifier une séance";
+        Tag = "carte";
         Name = "FrmSeanceDetail";
         Controls.Add(lblTitreFiche);
         Controls.Add(lblClasse);
