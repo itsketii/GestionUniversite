@@ -3,10 +3,8 @@ using System.Data;
 namespace GestionUniversite.DataAccess;
 
 // Lectures pour le tableau de bord et la page Statistiques (toutes sur l'année académique active)
-// Lectures pour le tableau de bord et la page Statistiques (toutes sur l'année académique active)
 public class StatistiquesDAO
 {
-    private const string Annee = "(SELECT idAnnee FROM AnneeAcademique WHERE estActive = 1)";
     private const string Annee = "(SELECT idAnnee FROM AnneeAcademique WHERE estActive = 1)";
 
     public int EtudiantsInscrits() =>
@@ -14,44 +12,20 @@ public class StatistiquesDAO
 
     public int InscriptionsEnAttente() =>
         Entier($"SELECT COUNT(*) FROM Inscription WHERE statut = N'En attente' AND idAnnee = {Annee}");
-        Entier($"SELECT COUNT(*) FROM Inscription WHERE statut = N'Validée' AND idAnnee = {Annee}");
-
-    public int InscriptionsEnAttente() =>
-        Entier($"SELECT COUNT(*) FROM Inscription WHERE statut = N'En attente' AND idAnnee = {Annee}");
 
     public int ClassesOuvertes() =>
-        Entier($"SELECT COUNT(*) FROM Classe WHERE idAnnee = {Annee}");
         Entier($"SELECT COUNT(*) FROM Classe WHERE idAnnee = {Annee}");
 
     public int SeancesSemaine() =>
         Entier("SELECT COUNT(*) FROM Seance WHERE statut <> N'Annulée' " +
                "AND dateSeance BETWEEN CAST(GETDATE() AS DATE) AND DATEADD(day, 7, CAST(GETDATE() AS DATE))");
-        Entier("SELECT COUNT(*) FROM Seance WHERE statut <> N'Annulée' " +
-               "AND dateSeance BETWEEN CAST(GETDATE() AS DATE) AND DATEADD(day, 7, CAST(GETDATE() AS DATE))");
-
-    public int SeancesPlanifiees() =>
-        Entier("SELECT COUNT(*) FROM Seance WHERE statut <> N'Annulée'");
 
     public int SeancesPlanifiees() =>
         Entier("SELECT COUNT(*) FROM Seance WHERE statut <> N'Annulée'");
 
     public int AbsencesNonJustifiees() =>
         Entier("SELECT COUNT(*) FROM Absence WHERE justifiee = 0");
-        Entier("SELECT COUNT(*) FROM Absence WHERE justifiee = 0");
 
-    public decimal FraisEncaisses() =>
-        Convert.ToDecimal(Sql.Valeur($"SELECT ISNULL(SUM(fraisInscription), 0) FROM Inscription WHERE statut = N'Validée' AND idAnnee = {Annee}"));
-
-    public int TauxValidation() =>
-        Entier($"SELECT CASE WHEN COUNT(*) = 0 THEN 0 ELSE 100 * SUM(CASE WHEN statut = N'Validée' THEN 1 ELSE 0 END) / COUNT(*) END " +
-               $"FROM Inscription WHERE statut <> N'Annulée' AND idAnnee = {Annee}");
-
-    public DataTable ProchainesSeances() => Sql.Table(
-        "SELECT TOP 8 CONVERT(VARCHAR(5), dateSeance, 103) AS jour, " +
-        "CONVERT(VARCHAR(5), heureDebut, 108) + ' - ' + CONVERT(VARCHAR(5), heureFin, 108) AS heure, " +
-        "matiere, classe, salle, typeSeance " +
-        "FROM vEmploiDuTemps WHERE statut <> N'Annulée' AND dateSeance >= CAST(GETDATE() AS DATE) " +
-        "ORDER BY dateSeance, heureDebut");
     public decimal FraisEncaisses() =>
         Convert.ToDecimal(Sql.Valeur($"SELECT ISNULL(SUM(fraisInscription), 0) FROM Inscription WHERE statut = N'Validée' AND idAnnee = {Annee}"));
 
