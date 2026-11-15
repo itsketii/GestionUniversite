@@ -148,25 +148,29 @@ Tables : AnneeAcademique, Filiere, Niveau, Classe, Etudiant, Inscription, Enseig
 ### Étapes
 
 1. Cloner le dépôt :
+
    ```bash
    git clone https://github.com/itsketii/GestionUniversite.git
    ```
+
 2. Dans SSMS, exécuter dans l'ordre les scripts du dossier `Database/`.
 3. Ouvrir `GestionUniversite.sln` dans Visual Studio. Les paquets NuGet (`Microsoft.Data.SqlClient`, `FontAwesome.Sharp`) sont restaurés automatiquement.
 4. Dans `GestionUniversite/DataAccess/DbConnexion.cs`, adapter le nom du serveur :
+
    ```csharp
    public const string Serveur = @"localhost\SQLEXPRESS";
    ```
+
 5. Générer la solution (Ctrl+Maj+B) puis lancer l'application (F5).
 
 ### Compte de départ
 
-| E-mail                          | Mot de passe  | Actif |
-| ------------------------------- | ------------- | ----- |
-| admin@iit.ci                    | Admin@2026    | Oui   |
-| SERVICE SCOLARITE               | ServSco@2026  | Oui   |
-| ANANGAMAN SEDRICK GAËL KOUAGNI | Sk@07bbpr08   | Oui   |
-| Compte Test                     | compte@test01 | Non   |
+| E-mail                  | Mot de passe  | Actif |
+| ----------------------- | ------------- | ----- |
+| <admin@iit.ci>            | Admin@2026    | Oui   |
+| <servicescolarite@iit.ci> | ServSco@2026  | Oui   |
+| <sedrick.kouagni@iit.ci>  | Sk@07bbpr08   | Oui   |
+| <compte.test@iit.ci>      | compte@test01 | Non   |
 
 À changer dès la première utilisation (Paramètres, Changer mon mot de passe).
 
@@ -192,10 +196,10 @@ L'export PDF utilise l'imprimante Windows « Microsoft Print to PDF », présent
 
 ## Équipe
 
-* Kouadio Ketsia
-* Kodja Esther
-* Essane Jean-Noël
-* Biagou Marc-Aurel
+- Kouadio Ketsia
+- Kodja Esther
+- Essane Jean-Noël
+- Biagou Marc-Aurel
 
 ## Licence
 
