@@ -24,7 +24,7 @@ public partial class UcAbsences : UserControl
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Outils.Erreur(ex.Message);
         }
     }
 
@@ -40,7 +40,7 @@ public partial class UcAbsences : UserControl
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Outils.Erreur(ex.Message);
         }
     }
 
@@ -65,11 +65,37 @@ public partial class UcAbsences : UserControl
         {
             dgvAppel.EndEdit();
             _dao.EnregistrerAppel(idSeance, _appel);
-            MessageBox.Show("Appel enregistré.", "Absences", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Outils.Info("Appel enregistré.");
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Outils.Erreur(ex.Message);
         }
     }
+
+    private Rapport RapportFeuille()
+    {
+        if (_appel == null || cboSeance.SelectedIndex < 0) return null;
+        var r = new Rapport { Titre = "Feuille d’appel", SousTitre = cboSeance.Text, Paysage = false };
+        r.Entetes.AddRange(new[] { "N°", "Matricule", "Étudiant", "Présent", "Signature" });
+        r.Poids.AddRange(new float[] { 36, 100, 200, 60, 170 });
+        int i = 1;
+        foreach (DataRow row in _appel.Rows)
+            r.Lignes.Add(new[] { (i++).ToString(), (string)row["matricule"], (string)row["etudiant"], "[    ]", "" });
+        return r;
+    }
+
+    private void btnFeuille_Click(object sender, EventArgs e)
+    {
+        var r = RapportFeuille();
+        if (r != null) Impression.Apercu(FindForm(), r.CreerDocument());
+    }
+
+    private void btnFeuillePdf_Click(object sender, EventArgs e)
+    {
+        var r = RapportFeuille();
+        if (r != null) Impression.Pdf(FindForm(), r.CreerDocument(), "feuille_appel");
+    }
+
+    private void btnExporter_Click(object sender, EventArgs e) => Exports.CsvDepuisGrille(dgvAppel, FindForm(), "appel");
 }

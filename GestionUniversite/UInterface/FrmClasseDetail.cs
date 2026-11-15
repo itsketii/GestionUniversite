@@ -9,6 +9,7 @@ public partial class FrmClasseDetail : Form
     public FrmClasseDetail()
     {
         InitializeComponent();
+        Theme.Appliquer(this);
         if (Outils.EstDesigner) return;
         Outils.Lier(cboFiliere, ReferentielDAO.Filieres(), "libelle", "idFiliere");
         Outils.Lier(cboNiveau, ReferentielDAO.Niveaux(), "libelle", "idNiveau");

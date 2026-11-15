@@ -14,18 +14,26 @@ partial class UcClasses
 
     private void InitializeComponent()
     {
-        lblTitre = new Label();
-        lblSousTitre = new Label();
-        btnNouvelleClasse = new BoutonArrondi();
-        btnSupprimerClasse = new BoutonArrondi();
-        pnlClasses = new PanelArrondi();
-        lblClassesTitre = new Label();
+        tlpCorps = new TableLayoutPanel();
+        cardClasses = new PanelArrondi();
         dgvClasses = new GrilleModerne();
-        pnlCours = new PanelArrondi();
-        lblCoursTitre = new Label();
+        lblTitreClasses = new Label();
+        cardCours = new PanelArrondi();
         dgvCours = new GrilleModerne();
+        pnlBoutonsCours = new Panel();
+        tlpBoutonsCours = new TableLayoutPanel();
         btnAjouterCours = new BoutonArrondi();
         btnRetirerCours = new BoutonArrondi();
+        lblCoursTitre = new Label();
+        pnlOutils = new Panel();
+        flpBoutons = new FlowLayoutPanel();
+        btnExporter = new BoutonArrondi();
+        btnListePdf = new BoutonArrondi();
+        btnListeImprimer = new BoutonArrondi();
+        btnNouvelleClasse = new BoutonArrondi();
+        btnSupprimerClasse = new BoutonArrondi();
+        pnlEntete = new Panel();
+        lblSousTitre = new Label();
         colIdClasse = new DataGridViewTextBoxColumn();
         colLibelle = new DataGridViewTextBoxColumn();
         colFiliere = new DataGridViewTextBoxColumn();
@@ -38,88 +46,49 @@ partial class UcClasses
         colHeures = new DataGridViewTextBoxColumn();
         ((System.ComponentModel.ISupportInitialize)dgvClasses).BeginInit();
         ((System.ComponentModel.ISupportInitialize)dgvCours).BeginInit();
-        pnlClasses.SuspendLayout();
-        pnlCours.SuspendLayout();
+        tlpCorps.SuspendLayout();
+        cardClasses.SuspendLayout();
+        cardCours.SuspendLayout();
+        pnlBoutonsCours.SuspendLayout();
+        tlpBoutonsCours.SuspendLayout();
+        pnlOutils.SuspendLayout();
+        flpBoutons.SuspendLayout();
+        pnlEntete.SuspendLayout();
         SuspendLayout();
         //
-        // lblTitre
+        // tlpCorps
         //
-        lblTitre.AutoSize = false;
-        lblTitre.Location = new Point(32, 26);
-        lblTitre.Size = new Size(500, 40);
-        lblTitre.Text = "Classes";
-        lblTitre.ForeColor = Color.FromArgb(27, 20, 22);
-        lblTitre.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
-        lblTitre.Name = "lblTitre";
-        lblTitre.TabIndex = 0;
+        tlpCorps.ColumnCount = 2;
+        tlpCorps.RowCount = 1;
+        tlpCorps.Dock = DockStyle.Fill;
+        tlpCorps.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58F));
+        tlpCorps.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42F));
+        tlpCorps.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        tlpCorps.Name = "tlpCorps";
+        tlpCorps.TabIndex = 0;
+        tlpCorps.Controls.Add(cardClasses, 0, 0);
+        tlpCorps.Controls.Add(cardCours, 1, 0);
         //
-        // lblSousTitre
+        // cardClasses
         //
-        lblSousTitre.AutoSize = false;
-        lblSousTitre.Location = new Point(34, 66);
-        lblSousTitre.Size = new Size(500, 24);
-        lblSousTitre.Text = "Classes de l’université et cours de chaque classe";
-        lblSousTitre.ForeColor = Color.FromArgb(107, 96, 99);
-        lblSousTitre.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-        lblSousTitre.Name = "lblSousTitre";
-        lblSousTitre.TabIndex = 1;
-        //
-        // btnNouvelleClasse
-        //
-        btnNouvelleClasse.BackColor = Color.FromArgb(155, 27, 48);
-        btnNouvelleClasse.ForeColor = Color.FromArgb(255, 255, 255);
-        btnNouvelleClasse.Location = new Point(736, 100);
-        btnNouvelleClasse.Size = new Size(140, 40);
-        btnNouvelleClasse.Text = "Nouvelle classe";
-        btnNouvelleClasse.UseVisualStyleBackColor = false;
-        btnNouvelleClasse.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        btnNouvelleClasse.Name = "btnNouvelleClasse";
-        btnNouvelleClasse.TabIndex = 2;
-        //
-        // btnSupprimerClasse
-        //
-        btnSupprimerClasse.BackColor = Color.FromArgb(179, 38, 30);
-        btnSupprimerClasse.ForeColor = Color.FromArgb(255, 255, 255);
-        btnSupprimerClasse.Location = new Point(888, 100);
-        btnSupprimerClasse.Size = new Size(120, 40);
-        btnSupprimerClasse.Text = "Supprimer";
-        btnSupprimerClasse.UseVisualStyleBackColor = false;
-        btnSupprimerClasse.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        btnSupprimerClasse.Name = "btnSupprimerClasse";
-        btnSupprimerClasse.TabIndex = 3;
-        //
-        // pnlClasses
-        //
-        pnlClasses.BackColor = Color.FromArgb(255, 255, 255);
-        pnlClasses.Location = new Point(32, 160);
-        pnlClasses.Size = new Size(560, 540);
-        pnlClasses.Rayon = 16;
-        pnlClasses.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        pnlClasses.Name = "pnlClasses";
-        pnlClasses.TabIndex = 4;
-        pnlClasses.Controls.Add(lblClassesTitre);
-        pnlClasses.Controls.Add(dgvClasses);
-        //
-        // lblClassesTitre
-        //
-        lblClassesTitre.AutoSize = false;
-        lblClassesTitre.Location = new Point(20, 14);
-        lblClassesTitre.Size = new Size(300, 26);
-        lblClassesTitre.Text = "Classes";
-        lblClassesTitre.ForeColor = Color.FromArgb(27, 20, 22);
-        lblClassesTitre.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-        lblClassesTitre.Name = "lblClassesTitre";
-        lblClassesTitre.TabIndex = 5;
+        cardClasses.BackColor = Color.FromArgb(255, 255, 255);
+        cardClasses.Rayon = 16;
+        cardClasses.Dock = DockStyle.Fill;
+        cardClasses.Tag = "carte";
+        cardClasses.Padding = new Padding(8, 8, 8, 8);
+        cardClasses.Margin = new Padding(0, 0, 8, 0);
+        cardClasses.Name = "cardClasses";
+        cardClasses.TabIndex = 1;
+        cardClasses.Controls.Add(dgvClasses);
+        cardClasses.Controls.Add(lblTitreClasses);
         //
         // dgvClasses
         //
         dgvClasses.AutoGenerateColumns = false;
-        dgvClasses.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        dgvClasses.Location = new Point(8, 48);
-        dgvClasses.Size = new Size(544, 484);
+        dgvClasses.Dock = DockStyle.Fill;
         dgvClasses.Columns.AddRange(new DataGridViewColumn[] { colIdClasse, colLibelle, colFiliere, colNiveau, colAnnee, colEffectif });
         dgvClasses.Name = "dgvClasses";
-        dgvClasses.TabIndex = 6;
+        dgvClasses.TabIndex = 2;
         //
         // colIdClasse
         //
@@ -176,40 +145,38 @@ partial class UcClasses
         colEffectif.Name = "colEffectif";
         colEffectif.ReadOnly = true;
         //
-        // pnlCours
+        // lblTitreClasses
         //
-        pnlCours.BackColor = Color.FromArgb(255, 255, 255);
-        pnlCours.Location = new Point(608, 160);
-        pnlCours.Size = new Size(400, 540);
-        pnlCours.Rayon = 16;
-        pnlCours.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-        pnlCours.Name = "pnlCours";
-        pnlCours.TabIndex = 7;
-        pnlCours.Controls.Add(lblCoursTitre);
-        pnlCours.Controls.Add(dgvCours);
-        pnlCours.Controls.Add(btnAjouterCours);
-        pnlCours.Controls.Add(btnRetirerCours);
+        lblTitreClasses.AutoSize = false;
+        lblTitreClasses.Dock = DockStyle.Top;
+        lblTitreClasses.Text = "Classes";
+        lblTitreClasses.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        lblTitreClasses.ForeColor = Color.FromArgb(27, 20, 22);
+        lblTitreClasses.Tag = "texte";
+        lblTitreClasses.Name = "lblTitreClasses";
+        lblTitreClasses.TabIndex = 3;
         //
-        // lblCoursTitre
+        // cardCours
         //
-        lblCoursTitre.AutoSize = false;
-        lblCoursTitre.Location = new Point(20, 14);
-        lblCoursTitre.Size = new Size(360, 26);
-        lblCoursTitre.Text = "Cours de la classe";
-        lblCoursTitre.ForeColor = Color.FromArgb(27, 20, 22);
-        lblCoursTitre.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-        lblCoursTitre.Name = "lblCoursTitre";
-        lblCoursTitre.TabIndex = 8;
+        cardCours.BackColor = Color.FromArgb(255, 255, 255);
+        cardCours.Rayon = 16;
+        cardCours.Dock = DockStyle.Fill;
+        cardCours.Tag = "carte";
+        cardCours.Padding = new Padding(8, 8, 8, 8);
+        cardCours.Margin = new Padding(8, 0, 0, 0);
+        cardCours.Name = "cardCours";
+        cardCours.TabIndex = 4;
+        cardCours.Controls.Add(dgvCours);
+        cardCours.Controls.Add(pnlBoutonsCours);
+        cardCours.Controls.Add(lblCoursTitre);
         //
         // dgvCours
         //
         dgvCours.AutoGenerateColumns = false;
-        dgvCours.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        dgvCours.Location = new Point(8, 48);
-        dgvCours.Size = new Size(384, 424);
+        dgvCours.Dock = DockStyle.Fill;
         dgvCours.Columns.AddRange(new DataGridViewColumn[] { colIdCours, colMatiere, colEnseignant, colHeures });
         dgvCours.Name = "dgvCours";
-        dgvCours.TabIndex = 9;
+        dgvCours.TabIndex = 5;
         //
         // colIdCours
         //
@@ -248,69 +215,222 @@ partial class UcClasses
         colHeures.Name = "colHeures";
         colHeures.ReadOnly = true;
         //
+        // pnlBoutonsCours
+        //
+        pnlBoutonsCours.Dock = DockStyle.Bottom;
+        pnlBoutonsCours.Size = new Size(100, 58);
+        pnlBoutonsCours.Name = "pnlBoutonsCours";
+        pnlBoutonsCours.TabIndex = 6;
+        pnlBoutonsCours.Controls.Add(tlpBoutonsCours);
+        //
+        // tlpBoutonsCours
+        //
+        tlpBoutonsCours.ColumnCount = 2;
+        tlpBoutonsCours.RowCount = 1;
+        tlpBoutonsCours.Dock = DockStyle.Fill;
+        tlpBoutonsCours.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+        tlpBoutonsCours.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
+        tlpBoutonsCours.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        tlpBoutonsCours.Name = "tlpBoutonsCours";
+        tlpBoutonsCours.TabIndex = 7;
+        tlpBoutonsCours.Controls.Add(btnAjouterCours, 0, 0);
+        tlpBoutonsCours.Controls.Add(btnRetirerCours, 1, 0);
+        //
         // btnAjouterCours
         //
         btnAjouterCours.BackColor = Color.FromArgb(155, 27, 48);
         btnAjouterCours.ForeColor = Color.FromArgb(255, 255, 255);
-        btnAjouterCours.Location = new Point(20, 484);
-        btnAjouterCours.Size = new Size(180, 40);
         btnAjouterCours.Text = "Ajouter un cours";
         btnAjouterCours.UseVisualStyleBackColor = false;
-        btnAjouterCours.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+        btnAjouterCours.Dock = DockStyle.Fill;
+        btnAjouterCours.Margin = new Padding(4, 8, 4, 6);
         btnAjouterCours.Name = "btnAjouterCours";
-        btnAjouterCours.TabIndex = 10;
+        btnAjouterCours.TabIndex = 8;
         //
         // btnRetirerCours
         //
         btnRetirerCours.BackColor = Color.FromArgb(179, 38, 30);
         btnRetirerCours.ForeColor = Color.FromArgb(255, 255, 255);
-        btnRetirerCours.Location = new Point(212, 484);
-        btnRetirerCours.Size = new Size(168, 40);
         btnRetirerCours.Text = "Retirer";
         btnRetirerCours.UseVisualStyleBackColor = false;
-        btnRetirerCours.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+        btnRetirerCours.Dock = DockStyle.Fill;
+        btnRetirerCours.Margin = new Padding(4, 8, 4, 6);
         btnRetirerCours.Name = "btnRetirerCours";
-        btnRetirerCours.TabIndex = 11;
+        btnRetirerCours.TabIndex = 9;
+        //
+        // lblCoursTitre
+        //
+        lblCoursTitre.AutoSize = false;
+        lblCoursTitre.Dock = DockStyle.Top;
+        lblCoursTitre.Text = "Cours de la classe";
+        lblCoursTitre.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+        lblCoursTitre.ForeColor = Color.FromArgb(27, 20, 22);
+        lblCoursTitre.Tag = "texte";
+        lblCoursTitre.Name = "lblCoursTitre";
+        lblCoursTitre.TabIndex = 10;
+        //
+        // pnlOutils
+        //
+        pnlOutils.Dock = DockStyle.Top;
+        pnlOutils.Size = new Size(100, 56);
+        pnlOutils.Name = "pnlOutils";
+        pnlOutils.TabIndex = 11;
+        pnlOutils.Controls.Add(flpBoutons);
+        //
+        // flpBoutons
+        //
+        flpBoutons.AutoSize = true;
+        flpBoutons.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+        flpBoutons.Dock = DockStyle.Right;
+        flpBoutons.FlowDirection = FlowDirection.LeftToRight;
+        flpBoutons.WrapContents = false;
+        flpBoutons.Size = new Size(100, 56);
+        flpBoutons.Name = "flpBoutons";
+        flpBoutons.TabIndex = 12;
+        flpBoutons.Controls.Add(btnExporter);
+        flpBoutons.Controls.Add(btnListePdf);
+        flpBoutons.Controls.Add(btnListeImprimer);
+        flpBoutons.Controls.Add(btnNouvelleClasse);
+        flpBoutons.Controls.Add(btnSupprimerClasse);
+        //
+        // btnExporter
+        //
+        btnExporter.BackColor = Color.FromArgb(239, 232, 234);
+        btnExporter.ForeColor = Color.FromArgb(27, 20, 22);
+        btnExporter.Text = "Exporter";
+        btnExporter.UseVisualStyleBackColor = false;
+        btnExporter.Location = new Point(0, 0);
+        btnExporter.Size = new Size(92, 40);
+        btnExporter.Tag = "secondaire";
+        btnExporter.Margin = new Padding(8, 8, 0, 8);
+        btnExporter.Name = "btnExporter";
+        btnExporter.TabIndex = 13;
+        //
+        // btnListePdf
+        //
+        btnListePdf.BackColor = Color.FromArgb(239, 232, 234);
+        btnListePdf.ForeColor = Color.FromArgb(27, 20, 22);
+        btnListePdf.Text = "Liste en PDF";
+        btnListePdf.UseVisualStyleBackColor = false;
+        btnListePdf.Location = new Point(0, 0);
+        btnListePdf.Size = new Size(112, 40);
+        btnListePdf.Tag = "secondaire";
+        btnListePdf.Margin = new Padding(8, 8, 0, 8);
+        btnListePdf.Name = "btnListePdf";
+        btnListePdf.TabIndex = 14;
+        //
+        // btnListeImprimer
+        //
+        btnListeImprimer.BackColor = Color.FromArgb(239, 232, 234);
+        btnListeImprimer.ForeColor = Color.FromArgb(27, 20, 22);
+        btnListeImprimer.Text = "Imprimer la liste";
+        btnListeImprimer.UseVisualStyleBackColor = false;
+        btnListeImprimer.Location = new Point(0, 0);
+        btnListeImprimer.Size = new Size(140, 40);
+        btnListeImprimer.Tag = "secondaire";
+        btnListeImprimer.Margin = new Padding(8, 8, 0, 8);
+        btnListeImprimer.Name = "btnListeImprimer";
+        btnListeImprimer.TabIndex = 15;
+        //
+        // btnNouvelleClasse
+        //
+        btnNouvelleClasse.BackColor = Color.FromArgb(155, 27, 48);
+        btnNouvelleClasse.ForeColor = Color.FromArgb(255, 255, 255);
+        btnNouvelleClasse.Text = "Nouvelle classe";
+        btnNouvelleClasse.UseVisualStyleBackColor = false;
+        btnNouvelleClasse.Location = new Point(0, 0);
+        btnNouvelleClasse.Size = new Size(140, 40);
+        btnNouvelleClasse.Margin = new Padding(8, 8, 0, 8);
+        btnNouvelleClasse.Name = "btnNouvelleClasse";
+        btnNouvelleClasse.TabIndex = 16;
+        //
+        // btnSupprimerClasse
+        //
+        btnSupprimerClasse.BackColor = Color.FromArgb(179, 38, 30);
+        btnSupprimerClasse.ForeColor = Color.FromArgb(255, 255, 255);
+        btnSupprimerClasse.Text = "Supprimer";
+        btnSupprimerClasse.UseVisualStyleBackColor = false;
+        btnSupprimerClasse.Location = new Point(0, 0);
+        btnSupprimerClasse.Size = new Size(108, 40);
+        btnSupprimerClasse.Margin = new Padding(8, 8, 0, 8);
+        btnSupprimerClasse.Name = "btnSupprimerClasse";
+        btnSupprimerClasse.TabIndex = 17;
+        //
+        // pnlEntete
+        //
+        pnlEntete.Dock = DockStyle.Top;
+        pnlEntete.Size = new Size(100, 34);
+        pnlEntete.Name = "pnlEntete";
+        pnlEntete.TabIndex = 18;
+        pnlEntete.Controls.Add(lblSousTitre);
+        //
+        // lblSousTitre
+        //
+        lblSousTitre.AutoSize = false;
+        lblSousTitre.Location = new Point(4, 6);
+        lblSousTitre.Size = new Size(900, 24);
+        lblSousTitre.Text = "Classes de l’année et matières enseignées dans chaque classe";
+        lblSousTitre.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+        lblSousTitre.ForeColor = Color.FromArgb(107, 96, 99);
+        lblSousTitre.Tag = "discret";
+        lblSousTitre.Name = "lblSousTitre";
+        lblSousTitre.TabIndex = 19;
         //
         // UcClasses
         //
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.FromArgb(246, 243, 242);
-        Size = new Size(1040, 760);
+        Padding = new Padding(20, 12, 20, 12);
+        Size = new Size(1073, 724);
+        Tag = "fond";
         Name = "UcClasses";
-        Controls.Add(lblTitre);
-        Controls.Add(lblSousTitre);
-        Controls.Add(btnNouvelleClasse);
-        Controls.Add(btnSupprimerClasse);
-        Controls.Add(pnlClasses);
-        Controls.Add(pnlCours);
-        btnNouvelleClasse.Click += btnNouvelleClasse_Click;
-        btnSupprimerClasse.Click += btnSupprimerClasse_Click;
+        Controls.Add(tlpCorps);
+        Controls.Add(pnlOutils);
+        Controls.Add(pnlEntete);
         dgvClasses.SelectionChanged += dgvClasses_SelectionChanged;
         btnAjouterCours.Click += btnAjouterCours_Click;
         btnRetirerCours.Click += btnRetirerCours_Click;
+        btnExporter.Click += btnExporter_Click;
+        btnListePdf.Click += btnListePdf_Click;
+        btnListeImprimer.Click += btnListeImprimer_Click;
+        btnNouvelleClasse.Click += btnNouvelleClasse_Click;
+        btnSupprimerClasse.Click += btnSupprimerClasse_Click;
         Load += UcClasses_Load;
         ((System.ComponentModel.ISupportInitialize)dgvClasses).EndInit();
         ((System.ComponentModel.ISupportInitialize)dgvCours).EndInit();
-        pnlClasses.ResumeLayout(false);
-        pnlCours.ResumeLayout(false);
+        tlpCorps.ResumeLayout(false);
+        cardClasses.ResumeLayout(false);
+        cardCours.ResumeLayout(false);
+        pnlBoutonsCours.ResumeLayout(false);
+        tlpBoutonsCours.ResumeLayout(false);
+        pnlOutils.ResumeLayout(false);
+        flpBoutons.ResumeLayout(false);
+        pnlEntete.ResumeLayout(false);
         ResumeLayout(false);
         PerformLayout();
     }
 
-    private Label lblTitre;
-    private Label lblSousTitre;
-    private BoutonArrondi btnNouvelleClasse;
-    private BoutonArrondi btnSupprimerClasse;
-    private PanelArrondi pnlClasses;
-    private Label lblClassesTitre;
+    private TableLayoutPanel tlpCorps;
+    private PanelArrondi cardClasses;
     private GrilleModerne dgvClasses;
-    private PanelArrondi pnlCours;
-    private Label lblCoursTitre;
+    private Label lblTitreClasses;
+    private PanelArrondi cardCours;
     private GrilleModerne dgvCours;
+    private Panel pnlBoutonsCours;
+    private TableLayoutPanel tlpBoutonsCours;
     private BoutonArrondi btnAjouterCours;
     private BoutonArrondi btnRetirerCours;
+    private Label lblCoursTitre;
+    private Panel pnlOutils;
+    private FlowLayoutPanel flpBoutons;
+    private BoutonArrondi btnExporter;
+    private BoutonArrondi btnListePdf;
+    private BoutonArrondi btnListeImprimer;
+    private BoutonArrondi btnNouvelleClasse;
+    private BoutonArrondi btnSupprimerClasse;
+    private Panel pnlEntete;
+    private Label lblSousTitre;
     private DataGridViewTextBoxColumn colIdClasse;
     private DataGridViewTextBoxColumn colLibelle;
     private DataGridViewTextBoxColumn colFiliere;

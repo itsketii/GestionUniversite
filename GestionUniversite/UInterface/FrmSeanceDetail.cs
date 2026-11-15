@@ -12,6 +12,7 @@ public partial class FrmSeanceDetail : Form
     public FrmSeanceDetail(DateTime dateInitiale)
     {
         InitializeComponent();
+        Theme.Appliquer(this);
         if (Outils.EstDesigner) return;
 
         dtpDate.Value = dateInitiale < DateTime.Today ? DateTime.Today : dateInitiale;

@@ -8,6 +8,7 @@ public partial class FrmInscriptionDetail : Form
     public FrmInscriptionDetail()
     {
         InitializeComponent();
+        Theme.Appliquer(this);
         if (Outils.EstDesigner) return;
         Outils.Lier(cboEtudiant, ReferentielDAO.Etudiants(), "libelle", "idEtudiant", false);
         Outils.Lier(cboClasse, ReferentielDAO.ClassesActives(), "libelle", "idClasse");

@@ -29,4 +29,11 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <!-- Windows marque parfois les fichiers d'une archive téléchargée « provenant d'Internet » (erreur MSB3821).
+       Cette étape retire la marque avant la compilation des ressources. -->
+  <Target Name="DebloquerFichiers" BeforeTargets="PrepareResources" Condition="'$(OS)' == 'Windows_NT'">
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -Command &quot;Get-ChildItem -LiteralPath '$(MSBuildProjectDirectory)' -Recurse -File -ErrorAction SilentlyContinue | Unblock-File -ErrorAction SilentlyContinue&quot;"
+          ContinueOnError="true" IgnoreExitCode="true" StandardOutputImportance="low" StandardErrorImportance="low" />
+  </Target>
+
 </Project>

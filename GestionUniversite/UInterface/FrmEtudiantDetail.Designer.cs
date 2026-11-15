@@ -47,6 +47,7 @@ partial class FrmEtudiantDetail
         lblTitreFiche.ForeColor = Color.FromArgb(27, 20, 22);
         lblTitreFiche.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
         lblTitreFiche.Name = "lblTitreFiche";
+        lblTitreFiche.Tag = "texte";
         lblTitreFiche.TabIndex = 0;
         //
         // lblMatricule
@@ -58,6 +59,7 @@ partial class FrmEtudiantDetail
         lblMatricule.ForeColor = Color.FromArgb(27, 20, 22);
         lblMatricule.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblMatricule.Name = "lblMatricule";
+        lblMatricule.Tag = "texte";
         lblMatricule.TabIndex = 1;
         //
         // txtMatricule
@@ -66,6 +68,7 @@ partial class FrmEtudiantDetail
         txtMatricule.Location = new Point(24, 92);
         txtMatricule.Size = new Size(224, 26);
         txtMatricule.Name = "txtMatricule";
+        txtMatricule.Tag = "input";
         txtMatricule.TabIndex = 2;
         //
         // lblNaissance
@@ -77,6 +80,7 @@ partial class FrmEtudiantDetail
         lblNaissance.ForeColor = Color.FromArgb(27, 20, 22);
         lblNaissance.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblNaissance.Name = "lblNaissance";
+        lblNaissance.Tag = "texte";
         lblNaissance.TabIndex = 3;
         //
         // dtpNaissance
@@ -86,6 +90,7 @@ partial class FrmEtudiantDetail
         dtpNaissance.Location = new Point(272, 92);
         dtpNaissance.Size = new Size(224, 26);
         dtpNaissance.Name = "dtpNaissance";
+        dtpNaissance.Tag = "input";
         dtpNaissance.TabIndex = 4;
         //
         // lblNom
@@ -97,6 +102,7 @@ partial class FrmEtudiantDetail
         lblNom.ForeColor = Color.FromArgb(27, 20, 22);
         lblNom.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblNom.Name = "lblNom";
+        lblNom.Tag = "texte";
         lblNom.TabIndex = 5;
         //
         // txtNom
@@ -105,6 +111,7 @@ partial class FrmEtudiantDetail
         txtNom.Location = new Point(24, 152);
         txtNom.Size = new Size(224, 26);
         txtNom.Name = "txtNom";
+        txtNom.Tag = "input";
         txtNom.TabIndex = 6;
         //
         // lblPrenoms
@@ -116,6 +123,7 @@ partial class FrmEtudiantDetail
         lblPrenoms.ForeColor = Color.FromArgb(27, 20, 22);
         lblPrenoms.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblPrenoms.Name = "lblPrenoms";
+        lblPrenoms.Tag = "texte";
         lblPrenoms.TabIndex = 7;
         //
         // txtPrenoms
@@ -124,6 +132,7 @@ partial class FrmEtudiantDetail
         txtPrenoms.Location = new Point(272, 152);
         txtPrenoms.Size = new Size(224, 26);
         txtPrenoms.Name = "txtPrenoms";
+        txtPrenoms.Tag = "input";
         txtPrenoms.TabIndex = 8;
         //
         // lblLieu
@@ -135,6 +144,7 @@ partial class FrmEtudiantDetail
         lblLieu.ForeColor = Color.FromArgb(27, 20, 22);
         lblLieu.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblLieu.Name = "lblLieu";
+        lblLieu.Tag = "texte";
         lblLieu.TabIndex = 9;
         //
         // txtLieu
@@ -143,6 +153,7 @@ partial class FrmEtudiantDetail
         txtLieu.Location = new Point(24, 212);
         txtLieu.Size = new Size(224, 26);
         txtLieu.Name = "txtLieu";
+        txtLieu.Tag = "input";
         txtLieu.TabIndex = 10;
         //
         // lblSexe
@@ -154,6 +165,7 @@ partial class FrmEtudiantDetail
         lblSexe.ForeColor = Color.FromArgb(27, 20, 22);
         lblSexe.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblSexe.Name = "lblSexe";
+        lblSexe.Tag = "texte";
         lblSexe.TabIndex = 11;
         //
         // cboSexe
@@ -164,6 +176,7 @@ partial class FrmEtudiantDetail
         cboSexe.Location = new Point(272, 212);
         cboSexe.Size = new Size(224, 28);
         cboSexe.Name = "cboSexe";
+        cboSexe.Tag = "input";
         cboSexe.TabIndex = 12;
         //
         // lblEmail
@@ -175,6 +188,7 @@ partial class FrmEtudiantDetail
         lblEmail.ForeColor = Color.FromArgb(27, 20, 22);
         lblEmail.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblEmail.Name = "lblEmail";
+        lblEmail.Tag = "texte";
         lblEmail.TabIndex = 13;
         //
         // txtEmail
@@ -183,6 +197,7 @@ partial class FrmEtudiantDetail
         txtEmail.Location = new Point(24, 272);
         txtEmail.Size = new Size(224, 26);
         txtEmail.Name = "txtEmail";
+        txtEmail.Tag = "input";
         txtEmail.TabIndex = 14;
         //
         // lblTelephone
@@ -194,6 +209,7 @@ partial class FrmEtudiantDetail
         lblTelephone.ForeColor = Color.FromArgb(27, 20, 22);
         lblTelephone.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblTelephone.Name = "lblTelephone";
+        lblTelephone.Tag = "texte";
         lblTelephone.TabIndex = 15;
         //
         // txtTelephone
@@ -202,6 +218,7 @@ partial class FrmEtudiantDetail
         txtTelephone.Location = new Point(272, 272);
         txtTelephone.Size = new Size(224, 26);
         txtTelephone.Name = "txtTelephone";
+        txtTelephone.Tag = "input";
         txtTelephone.TabIndex = 16;
         //
         // lblAdresse
@@ -213,6 +230,7 @@ partial class FrmEtudiantDetail
         lblAdresse.ForeColor = Color.FromArgb(27, 20, 22);
         lblAdresse.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold, GraphicsUnit.Point);
         lblAdresse.Name = "lblAdresse";
+        lblAdresse.Tag = "texte";
         lblAdresse.TabIndex = 17;
         //
         // txtAdresse
@@ -221,6 +239,7 @@ partial class FrmEtudiantDetail
         txtAdresse.Location = new Point(24, 332);
         txtAdresse.Size = new Size(472, 26);
         txtAdresse.Name = "txtAdresse";
+        txtAdresse.Tag = "input";
         txtAdresse.TabIndex = 18;
         //
         // lblErreur
@@ -254,6 +273,7 @@ partial class FrmEtudiantDetail
         btnAnnuler.Text = "Annuler";
         btnAnnuler.UseVisualStyleBackColor = false;
         btnAnnuler.Name = "btnAnnuler";
+        btnAnnuler.Tag = "secondaire";
         btnAnnuler.TabIndex = 21;
         //
         // FrmEtudiantDetail
@@ -268,6 +288,7 @@ partial class FrmEtudiantDetail
         ShowInTaskbar = false;
         StartPosition = FormStartPosition.CenterParent;
         Text = "Étudiant";
+        Tag = "carte";
         Name = "FrmEtudiantDetail";
         Controls.Add(lblTitreFiche);
         Controls.Add(lblMatricule);

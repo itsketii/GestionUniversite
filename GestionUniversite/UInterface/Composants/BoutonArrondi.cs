@@ -1,5 +1,4 @@
 using System.ComponentModel;
-using System.Drawing.Drawing2D;
 
 namespace GestionUniversite.UInterface.Composants;
 
@@ -13,7 +12,7 @@ public class BoutonArrondi : Button
         FlatStyle = FlatStyle.Flat;
         FlatAppearance.BorderSize = 0;
         Cursor = Cursors.Hand;
-        BackColor = Theme.Primaire;
+        BackColor = Color.FromArgb(155, 27, 48);
         ForeColor = Color.White;
         Font = new Font("Segoe UI Semibold", 10F, FontStyle.Regular, GraphicsUnit.Point);
     }
@@ -25,6 +24,13 @@ public class BoutonArrondi : Button
         set { _rayon = value; Arrondir(); }
     }
 
+    protected override void OnBackColorChanged(EventArgs e)
+    {
+        base.OnBackColorChanged(e);
+        FlatAppearance.MouseOverBackColor = ControlPaint.Light(BackColor, 0.12f);
+        FlatAppearance.MouseDownBackColor = ControlPaint.Dark(BackColor, 0.05f);
+    }
+
     protected override void OnResize(EventArgs e)
     {
         base.OnResize(e);
@@ -34,13 +40,7 @@ public class BoutonArrondi : Button
     private void Arrondir()
     {
         if (Width <= 0 || Height <= 0) return;
-        int d = Math.Max(1, Math.Min(_rayon * 2, Math.Min(Width, Height)));
-        using var path = new GraphicsPath();
-        path.AddArc(0, 0, d, d, 180, 90);
-        path.AddArc(Width - d, 0, d, d, 270, 90);
-        path.AddArc(Width - d, Height - d, d, d, 0, 90);
-        path.AddArc(0, Height - d, d, d, 90, 90);
-        path.CloseFigure();
+        using var path = Dessin.RectArrondi(new RectangleF(0, 0, Width, Height), _rayon);
         Region = new Region(path);
     }
 }

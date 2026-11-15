@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System.Data;
 using GestionUniversite.DataAccess;
 
@@ -16,7 +15,7 @@ public partial class UcEtudiants : UserControl
 
     private void UcEtudiants_Load(object sender, EventArgs e)
     {
-        if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) return;
+        if (Outils.EstDesigner) return;
         Charger();
     }
 
@@ -30,22 +29,21 @@ public partial class UcEtudiants : UserControl
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Outils.Erreur(ex.Message);
         }
     }
 
     private void Filtrer()
     {
         if (_vue == null) return;
-        string t = new string(txtRecherche.Text.Trim().Where(c => "[]*%".IndexOf(c) < 0).ToArray()).Replace("'", "''");
-        _vue.RowFilter = t == "" ? "" : $"nom LIKE '%{t}%' OR prenoms LIKE '%{t}%' OR matricule LIKE '%{t}%'";
+        string t = Outils.Nettoyer(txtRecherche.Text);
+        _vue.RowFilter = t == "" ? "" : $"nom LIKE '%{t}%' OR prenoms LIKE '%{t}%' OR matricule LIKE '%{t}%' OR email LIKE '%{t}%'";
         lblNombre.Text = $"{_vue.Count} étudiant(s)";
     }
 
     private int? IdSelectionne()
     {
-        if (dgvEtudiants.CurrentRow?.DataBoundItem is DataRowView ligne)
-            return (int)ligne["idEtudiant"];
+        if (dgvEtudiants.CurrentRow?.DataBoundItem is DataRowView ligne) return (int)ligne["idEtudiant"];
         return null;
     }
 
@@ -68,7 +66,7 @@ public partial class UcEtudiants : UserControl
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Outils.Erreur(ex.Message);
         }
     }
 
@@ -81,7 +79,7 @@ public partial class UcEtudiants : UserControl
     {
         int? id = IdSelectionne();
         if (id == null) return;
-        if (MessageBox.Show("Supprimer cet étudiant ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+        if (!Outils.Confirmer("Supprimer l’étudiant sélectionné ?")) return;
         try
         {
             _dao.Delete(id.Value);
@@ -89,8 +87,17 @@ public partial class UcEtudiants : UserControl
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Suppression impossible (l'étudiant a peut-être des inscriptions ou des absences).\n\n" + ex.Message,
-                "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Suppression impossible : cet élément est utilisé ailleurs dans l’application.\n\n" + ex.Message,
+                "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
+
+    private Rapport NouveauRapport() =>
+        Rapport.DepuisGrille(dgvEtudiants, "Étudiants", $"{_vue?.Count ?? 0} étudiant(s)");
+
+    private void btnExporter_Click(object sender, EventArgs e) => Exports.CsvDepuisGrille(dgvEtudiants, FindForm(), "etudiants");
+
+    private void btnImprimer_Click(object sender, EventArgs e) => Impression.Apercu(FindForm(), NouveauRapport().CreerDocument());
+
+    private void btnPdf_Click(object sender, EventArgs e) => Impression.Pdf(FindForm(), NouveauRapport().CreerDocument(), "etudiants");
 }

@@ -18,4 +18,12 @@ public class SeanceDAO
             Sql.P("@dateSeance", date.Date), Sql.P("@heureDebut", debut), Sql.P("@heureFin", fin), Sql.P("@typeSeance", type));
 
     public void Annuler(int idSeance) => Sql.Proc("sp_AnnulerSeance", Sql.P("@idSeance", idSeance));
+
+
+    // Séances de la semaine avec dates et heures brutes (pour le calendrier)
+    public DataTable ListerSemaineBrut(DateTime debut, DateTime fin, string classe) => Sql.Table(
+        "SELECT idSeance, dateSeance, heureDebut, heureFin, matiere, classe, enseignant, salle, typeSeance, statut " +
+        "FROM vEmploiDuTemps WHERE dateSeance BETWEEN @debut AND @fin AND (@classe IS NULL OR classe = @classe) " +
+        "ORDER BY dateSeance, heureDebut",
+        Sql.P("@debut", debut.Date), Sql.P("@fin", fin.Date), Sql.P("@classe", classe));
 }

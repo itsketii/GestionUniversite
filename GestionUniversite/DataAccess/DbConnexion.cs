@@ -6,8 +6,8 @@ public static class DbConnexion
 {
     // A ADAPTER : nom de ton serveur SQL Server
     // Exemples : "."  |  "localhost\SQLEXPRESS"  |  "(localdb)\MSSQLLocalDB"
-    private const string Serveur = @"KETY\SQLEXPRESS";
-    private const string Base = "dbGestionUniversite";
+    public const string Serveur = @"KETY\SQLEXPRESS";
+    public const string Base = "dbGestionUniversite";
 
     public static string ChaineConnexion =>
         $"Server={Serveur};Database={Base};Trusted_Connection=True;TrustServerCertificate=True;";

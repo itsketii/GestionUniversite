@@ -29,4 +29,15 @@ public class InscriptionDAO
     public void Valider(int idInscription) => Sql.Proc("sp_ValiderInscription", Sql.P("@idInscription", idInscription));
 
     public void Annuler(int idInscription) => Sql.Proc("sp_AnnulerInscription", Sql.P("@idInscription", idInscription));
+
+
+    // Données du reçu d'inscription
+    public DataRow GetRecu(int idInscription)
+    {
+        var dt = Sql.Table(
+            "SELECT v.idInscription, v.dateInscription, v.matricule, v.etudiant, v.classe, v.fraisInscription, v.statut, a.libelle AS annee " +
+            "FROM vInscriptionsListe v JOIN AnneeAcademique a ON a.idAnnee = v.idAnnee WHERE v.idInscription = @id",
+            Sql.P("@id", idInscription));
+        return dt.Rows.Count == 0 ? null : dt.Rows[0];
+    }
 }

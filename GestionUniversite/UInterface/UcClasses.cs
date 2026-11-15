@@ -18,10 +18,12 @@ public partial class UcClasses : UserControl
         Charger();
     }
 
+    private DataRowView ClasseCourante() => dgvClasses.CurrentRow?.DataBoundItem as DataRowView;
+
     private int? IdClasse()
     {
-        if (dgvClasses.CurrentRow?.DataBoundItem is DataRowView ligne) return (int)ligne["idClasse"];
-        return null;
+        var ligne = ClasseCourante();
+        return ligne == null ? (int?)null : (int)ligne["idClasse"];
     }
 
     private int? IdCours()
@@ -30,7 +32,7 @@ public partial class UcClasses : UserControl
         return null;
     }
 
-    private void Afficher(Action action)
+    private void Securise(Action action)
     {
         try
         {
@@ -42,16 +44,18 @@ public partial class UcClasses : UserControl
         }
     }
 
-    private void Charger() => Afficher(() =>
+    private void Charger() => Securise(() =>
     {
         dgvClasses.DataSource = _dao.ListerClasses();
         ChargerCours();
     });
 
-    private void ChargerCours() => Afficher(() =>
+    private void ChargerCours() => Securise(() =>
     {
         int? id = IdClasse();
         dgvCours.DataSource = id == null ? null : _dao.ListerCours(id.Value);
+        var ligne = ClasseCourante();
+        lblCoursTitre.Text = ligne == null ? "Cours de la classe" : "Cours de " + ligne["libelle"];
         btnAjouterCours.Enabled = id != null;
         btnRetirerCours.Enabled = id != null;
     });
@@ -68,8 +72,8 @@ public partial class UcClasses : UserControl
     {
         int? id = IdClasse();
         if (id == null) return;
-        if (MessageBox.Show("Supprimer cette classe ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
-        Afficher(() =>
+        if (!Outils.Confirmer("Supprimer cette classe ?")) return;
+        Securise(() =>
         {
             _dao.Supprimer(id.Value);
             Charger();
@@ -88,11 +92,44 @@ public partial class UcClasses : UserControl
     {
         int? id = IdCours();
         if (id == null) return;
-        if (MessageBox.Show("Retirer ce cours de la classe ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
-        Afficher(() =>
+        if (!Outils.Confirmer("Retirer ce cours de la classe ?")) return;
+        Securise(() =>
         {
             _dao.RetirerCours(id.Value);
             ChargerCours();
         });
     }
+
+    private Rapport RapportClasse()
+    {
+        var ligne = ClasseCourante();
+        if (ligne == null) return null;
+        var table = _dao.ListeEtudiants((int)ligne["idClasse"]);
+        var r = new Rapport
+        {
+            Titre = "Liste de classe : " + ligne["libelle"],
+            SousTitre = table.Rows.Count + " étudiant(s) inscrit(s) · année " + ligne["annee"],
+            Paysage = false
+        };
+        r.Entetes.AddRange(new[] { "N°", "Matricule", "Nom", "Prénoms", "E-mail" });
+        r.Poids.AddRange(new float[] { 36, 100, 130, 150, 220 });
+        int i = 1;
+        foreach (DataRow row in table.Rows)
+            r.Lignes.Add(new[] { (i++).ToString(), (string)row["matricule"], (string)row["nom"], (string)row["prenoms"], (string)row["email"] });
+        return r;
+    }
+
+    private void btnListeImprimer_Click(object sender, EventArgs e)
+    {
+        var r = RapportClasse();
+        if (r != null) Securise(() => Impression.Apercu(FindForm(), r.CreerDocument()));
+    }
+
+    private void btnListePdf_Click(object sender, EventArgs e)
+    {
+        var r = RapportClasse();
+        if (r != null) Securise(() => Impression.Pdf(FindForm(), r.CreerDocument(), "liste_classe"));
+    }
+
+    private void btnExporter_Click(object sender, EventArgs e) => Exports.CsvDepuisGrille(dgvClasses, FindForm(), "classes");
 }

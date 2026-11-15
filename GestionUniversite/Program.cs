@@ -6,6 +6,8 @@ static class Program
     static void Main()
     {
         ApplicationConfiguration.Initialize();
+        UInterface.Parametres.Charger();
+        UInterface.Theme.Charger();
 
         using (var login = new UInterface.FrmLogin())
         {
