@@ -192,7 +192,7 @@ L'export PDF utilise l'imprimante Windows « Microsoft Print to PDF », présent
 
 ## Équipe
 
-* Kouadio Ketsoa
+* Kouadio Ketsia
 * Kodja Esther
 * Essane Jean-Noël
 * Biagou Marc-Aurel
