@@ -16,6 +16,7 @@ public partial class UcInscriptions : UserControl
     private void UcInscriptions_Load(object sender, EventArgs e)
     {
         if (Outils.EstDesigner) return;
+        Droits.AppliquerEcriture(this, "Inscriptions");
         Charger();
     }
 

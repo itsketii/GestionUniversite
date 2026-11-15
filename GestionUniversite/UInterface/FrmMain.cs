@@ -47,6 +47,7 @@ public partial class FrmMain : Form
         catch { lblAnnee.Text = "Année non disponible"; }
 
         AppliquerThemeEcran();
+        AppliquerDroitsMenu();
         Aller("Dashboard");
     }
 
@@ -54,6 +55,11 @@ public partial class FrmMain : Form
     public void Aller(string cle)
     {
         if (!_pages.TryGetValue(cle, out var info)) return;
+        if (!Droits.PeutAcceder(cle))
+        {
+            Outils.Info("Votre rôle (" + Droits.Role + ") ne permet pas d'ouvrir cet écran.");
+            return;
+        }
         _courant = cle;
         foreach (var entree in _pages) Style(entree.Value.Bouton, entree.Key == cle);
 
@@ -63,6 +69,37 @@ public partial class FrmMain : Form
         pnlContenu.Controls.Add(page);
         Theme.Appliquer(page);
         lblPage.Text = info.Titre;
+    }
+
+    // Masque les écrans interdits au rôle de l'utilisateur et recompose le menu
+    private void AppliquerDroitsMenu()
+    {
+        float echelle = DeviceDpi / 96f;
+        var groupes = new (Control Titre, string[] Cles)[]
+        {
+            (lblSecPrincipal, new[] { "Dashboard", "Statistiques" }),
+            (lblSecGestion, new[] { "Etudiants", "Inscriptions", "Classes", "Planification", "Absences" }),
+            (lblSecRef, new[] { "Enseignants", "Matieres", "Salles", "Structure" }),
+            (lblSecSysteme, new[] { "Utilisateurs", "Parametres" })
+        };
+
+        int y = (int)(8 * echelle);
+        foreach (var groupe in groupes)
+        {
+            var visibles = groupe.Cles.Where(Droits.PeutAcceder).ToList();
+            groupe.Titre.Visible = visibles.Count > 0;
+            foreach (var cle in groupe.Cles) _pages[cle].Bouton.Visible = visibles.Contains(cle);
+            if (visibles.Count == 0) continue;
+
+            groupe.Titre.Top = y;
+            y += (int)(20 * echelle);
+            foreach (var cle in visibles)
+            {
+                _pages[cle].Bouton.Top = y;
+                y += (int)(38 * echelle);
+            }
+            y += (int)(8 * echelle);
+        }
     }
 
     private static void Style(IconButton bouton, bool actif)

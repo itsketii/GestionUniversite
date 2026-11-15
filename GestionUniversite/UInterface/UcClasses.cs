@@ -15,6 +15,7 @@ public partial class UcClasses : UserControl
     private void UcClasses_Load(object sender, EventArgs e)
     {
         if (Outils.EstDesigner) return;
+        Droits.AppliquerEcriture(this, "Classes");
         Charger();
     }
 

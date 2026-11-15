@@ -16,6 +16,7 @@ public partial class UcEtudiants : UserControl
     private void UcEtudiants_Load(object sender, EventArgs e)
     {
         if (Outils.EstDesigner) return;
+        Droits.AppliquerEcriture(this, "Etudiants");
         Charger();
     }
 
@@ -72,7 +73,7 @@ public partial class UcEtudiants : UserControl
 
     private void dgvEtudiants_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
     {
-        if (e.RowIndex >= 0) btnModifier_Click(sender, e);
+        if (e.RowIndex >= 0 && btnModifier.Visible) btnModifier_Click(sender, e);
     }
 
     private void btnSupprimer_Click(object sender, EventArgs e)
@@ -90,6 +91,12 @@ public partial class UcEtudiants : UserControl
             MessageBox.Show("Suppression impossible : cet élément est utilisé ailleurs dans l’application.\n\n" + ex.Message,
                 "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+    }
+
+    private void btnImporter_Click(object sender, EventArgs e)
+    {
+        using var f = new FrmImportEtudiants();
+        if (f.ShowDialog(FindForm()) == DialogResult.OK) Charger();
     }
 
     private Rapport NouveauRapport() =>

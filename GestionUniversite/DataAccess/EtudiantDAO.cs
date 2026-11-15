@@ -96,4 +96,60 @@ public class EtudiantDAO
         Telephone = Texte(rd, "telephone"),
         Adresse = Texte(rd, "adresse")
     };
+
+    // Matricules et e-mails déjà présents (détection des doublons à l'import)
+    public (HashSet<string> Matricules, HashSet<string> Emails) Existants()
+    {
+        var matricules = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var emails = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (DataRow ligne in Sql.Table("SELECT matricule, email FROM Etudiant").Rows)
+        {
+            matricules.Add(Convert.ToString(ligne["matricule"]));
+            emails.Add(Convert.ToString(ligne["email"]));
+        }
+        return (matricules, emails);
+    }
+
+    // Import en une seule transaction : tout est enregistré, ou rien
+    public int Importer(List<Etudiant> etudiants, int? idClasse, decimal frais, bool valider)
+    {
+        using var cn = DbConnexion.Creer();
+        cn.Open();
+        using var tx = cn.BeginTransaction();
+        try
+        {
+            foreach (var etudiant in etudiants)
+            {
+                int idEtudiant;
+                using (var cmd = new SqlCommand("SP_Etudiant_Create", cn, tx) { CommandType = CommandType.StoredProcedure })
+                {
+                    AjouterParametres(cmd, etudiant);
+                    idEtudiant = (int)cmd.ExecuteScalar();
+                }
+                if (idClasse == null) continue;
+
+                int idInscription;
+                using (var cmd = new SqlCommand("sp_InscrireEtudiant", cn, tx) { CommandType = CommandType.StoredProcedure })
+                {
+                    cmd.Parameters.AddWithValue("@idEtudiant", idEtudiant);
+                    cmd.Parameters.AddWithValue("@idClasse", idClasse.Value);
+                    cmd.Parameters.AddWithValue("@fraisInscription", frais);
+                    idInscription = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+                if (valider)
+                {
+                    using var cmd = new SqlCommand("sp_ValiderInscription", cn, tx) { CommandType = CommandType.StoredProcedure };
+                    cmd.Parameters.AddWithValue("@idInscription", idInscription);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            tx.Commit();
+            return etudiants.Count;
+        }
+        catch
+        {
+            try { tx.Rollback(); } catch { }
+            throw;
+        }
+    }
 }

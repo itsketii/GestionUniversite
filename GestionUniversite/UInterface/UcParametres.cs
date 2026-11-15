@@ -12,6 +12,11 @@ public partial class UcParametres : UserControl
     private void UcParametres_Load(object sender, EventArgs e)
     {
         if (Outils.EstDesigner) return;
+        if (!Droits.EstAdmin)
+        {
+            cardEtablissement.Visible = false;
+            cardBase.Visible = false;
+        }
         lblNomCompte.Text = Session.Utilisateur?.NomComplet ?? "";
         lblEmailCompte.Text = Session.Utilisateur?.Email ?? "";
         lblRoleCompte.Text = "Rôle : " + (Session.Utilisateur?.Role ?? "");

@@ -16,6 +16,7 @@ public partial class UcAbsences : UserControl
     private void UcAbsences_Load(object sender, EventArgs e)
     {
         if (Outils.EstDesigner) return;
+        Droits.AppliquerEcriture(this, "Absences");
         try
         {
             Outils.Lier(cboSeance, _dao.Seances(), "libelle", "idSeance", false);

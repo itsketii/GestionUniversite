@@ -26,6 +26,7 @@ partial class UcEtudiants
         btnExporter = new BoutonArrondi();
         btnPdf = new BoutonArrondi();
         btnImprimer = new BoutonArrondi();
+        btnImporter = new BoutonArrondi();
         btnNouveau = new BoutonArrondi();
         btnModifier = new BoutonArrondi();
         btnSupprimer = new BoutonArrondi();
@@ -164,7 +165,7 @@ partial class UcEtudiants
         pnlRecherche.BackColor = Color.FromArgb(255, 255, 255);
         pnlRecherche.Rayon = 12;
         pnlRecherche.Location = new Point(0, 8);
-        pnlRecherche.Size = new Size(340, 40);
+        pnlRecherche.Size = new Size(260, 40);
         pnlRecherche.Tag = "input";
         pnlRecherche.Name = "pnlRecherche";
         pnlRecherche.TabIndex = 5;
@@ -178,7 +179,7 @@ partial class UcEtudiants
         txtRecherche.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
         txtRecherche.Location = new Point(44, 11);
         txtRecherche.PlaceholderText = "Rechercher…";
-        txtRecherche.Size = new Size(280, 20);
+        txtRecherche.Size = new Size(200, 20);
         txtRecherche.Tag = "input";
         txtRecherche.Name = "txtRecherche";
         txtRecherche.TabIndex = 6;
@@ -209,6 +210,7 @@ partial class UcEtudiants
         flpBoutons.Controls.Add(btnExporter);
         flpBoutons.Controls.Add(btnPdf);
         flpBoutons.Controls.Add(btnImprimer);
+        flpBoutons.Controls.Add(btnImporter);
         flpBoutons.Controls.Add(btnNouveau);
         flpBoutons.Controls.Add(btnModifier);
         flpBoutons.Controls.Add(btnSupprimer);
@@ -220,7 +222,7 @@ partial class UcEtudiants
         btnExporter.Text = "Exporter";
         btnExporter.UseVisualStyleBackColor = false;
         btnExporter.Location = new Point(0, 0);
-        btnExporter.Size = new Size(92, 40);
+        btnExporter.Size = new Size(88, 40);
         btnExporter.Tag = "secondaire";
         btnExporter.Margin = new Padding(8, 8, 0, 8);
         btnExporter.Name = "btnExporter";
@@ -233,7 +235,7 @@ partial class UcEtudiants
         btnPdf.Text = "PDF";
         btnPdf.UseVisualStyleBackColor = false;
         btnPdf.Location = new Point(0, 0);
-        btnPdf.Size = new Size(60, 40);
+        btnPdf.Size = new Size(56, 40);
         btnPdf.Tag = "secondaire";
         btnPdf.Margin = new Padding(8, 8, 0, 8);
         btnPdf.Name = "btnPdf";
@@ -246,11 +248,24 @@ partial class UcEtudiants
         btnImprimer.Text = "Imprimer";
         btnImprimer.UseVisualStyleBackColor = false;
         btnImprimer.Location = new Point(0, 0);
-        btnImprimer.Size = new Size(92, 40);
+        btnImprimer.Size = new Size(88, 40);
         btnImprimer.Tag = "secondaire";
         btnImprimer.Margin = new Padding(8, 8, 0, 8);
         btnImprimer.Name = "btnImprimer";
         btnImprimer.TabIndex = 11;
+        //
+        // btnImporter
+        //
+        btnImporter.BackColor = Color.FromArgb(239, 232, 234);
+        btnImporter.ForeColor = Color.FromArgb(27, 20, 22);
+        btnImporter.Text = "Importer";
+        btnImporter.UseVisualStyleBackColor = false;
+        btnImporter.Location = new Point(0, 0);
+        btnImporter.Size = new Size(96, 40);
+        btnImporter.Tag = "secondaire";
+        btnImporter.Margin = new Padding(8, 8, 0, 8);
+        btnImporter.Name = "btnImporter";
+        btnImporter.TabIndex = 12;
         //
         // btnNouveau
         //
@@ -259,10 +274,10 @@ partial class UcEtudiants
         btnNouveau.Text = "Nouvel étudiant";
         btnNouveau.UseVisualStyleBackColor = false;
         btnNouveau.Location = new Point(0, 0);
-        btnNouveau.Size = new Size(150, 40);
+        btnNouveau.Size = new Size(140, 40);
         btnNouveau.Margin = new Padding(8, 8, 0, 8);
         btnNouveau.Name = "btnNouveau";
-        btnNouveau.TabIndex = 12;
+        btnNouveau.TabIndex = 13;
         //
         // btnModifier
         //
@@ -271,10 +286,10 @@ partial class UcEtudiants
         btnModifier.Text = "Modifier";
         btnModifier.UseVisualStyleBackColor = false;
         btnModifier.Location = new Point(0, 0);
-        btnModifier.Size = new Size(96, 40);
+        btnModifier.Size = new Size(92, 40);
         btnModifier.Margin = new Padding(8, 8, 0, 8);
         btnModifier.Name = "btnModifier";
-        btnModifier.TabIndex = 13;
+        btnModifier.TabIndex = 14;
         //
         // btnSupprimer
         //
@@ -283,17 +298,17 @@ partial class UcEtudiants
         btnSupprimer.Text = "Supprimer";
         btnSupprimer.UseVisualStyleBackColor = false;
         btnSupprimer.Location = new Point(0, 0);
-        btnSupprimer.Size = new Size(108, 40);
+        btnSupprimer.Size = new Size(104, 40);
         btnSupprimer.Margin = new Padding(8, 8, 0, 8);
         btnSupprimer.Name = "btnSupprimer";
-        btnSupprimer.TabIndex = 14;
+        btnSupprimer.TabIndex = 15;
         //
         // pnlEntete
         //
         pnlEntete.Dock = DockStyle.Top;
         pnlEntete.Size = new Size(100, 34);
         pnlEntete.Name = "pnlEntete";
-        pnlEntete.TabIndex = 15;
+        pnlEntete.TabIndex = 16;
         pnlEntete.Controls.Add(lblSousTitre);
         //
         // lblSousTitre
@@ -306,7 +321,7 @@ partial class UcEtudiants
         lblSousTitre.ForeColor = Color.FromArgb(107, 96, 99);
         lblSousTitre.Tag = "discret";
         lblSousTitre.Name = "lblSousTitre";
-        lblSousTitre.TabIndex = 16;
+        lblSousTitre.TabIndex = 17;
         //
         // UcEtudiants
         //
@@ -326,6 +341,7 @@ partial class UcEtudiants
         btnExporter.Click += btnExporter_Click;
         btnPdf.Click += btnPdf_Click;
         btnImprimer.Click += btnImprimer_Click;
+        btnImporter.Click += btnImporter_Click;
         btnNouveau.Click += btnNouveau_Click;
         btnModifier.Click += btnModifier_Click;
         btnSupprimer.Click += btnSupprimer_Click;
@@ -353,6 +369,7 @@ partial class UcEtudiants
     private BoutonArrondi btnExporter;
     private BoutonArrondi btnPdf;
     private BoutonArrondi btnImprimer;
+    private BoutonArrondi btnImporter;
     private BoutonArrondi btnNouveau;
     private BoutonArrondi btnModifier;
     private BoutonArrondi btnSupprimer;

@@ -12,6 +12,7 @@ public partial class UcDashboard : UserControl
     private void UcDashboard_Load(object sender, EventArgs e)
     {
         if (Outils.EstDesigner) return;
+        btnNouvelleInscription.Visible = Droits.PeutEcrire("Inscriptions");
         lblBonjour.Text = "Bonjour, " + (Session.Utilisateur?.NomComplet ?? "");
         try
         {

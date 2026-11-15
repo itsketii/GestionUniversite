@@ -16,6 +16,7 @@ public partial class UcUtilisateurs : UserControl
     private void UcUtilisateurs_Load(object sender, EventArgs e)
     {
         if (Outils.EstDesigner) return;
+        Droits.AppliquerEcriture(this, "Utilisateurs");
         Charger();
     }
 
@@ -72,7 +73,7 @@ public partial class UcUtilisateurs : UserControl
 
     private void dgvUtilisateurs_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
     {
-        if (e.RowIndex >= 0) btnModifier_Click(sender, e);
+        if (e.RowIndex >= 0 && btnModifier.Visible) btnModifier_Click(sender, e);
     }
 
     private void btnSupprimer_Click(object sender, EventArgs e)

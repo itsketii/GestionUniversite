@@ -21,6 +21,7 @@ public partial class UcPlanification : UserControl
     private void UcPlanification_Load(object sender, EventArgs e)
     {
         if (Outils.EstDesigner) return;
+        Droits.AppliquerEcriture(this, "Planification");
         try
         {
             var classes = ReferentielDAO.ClassesActives();

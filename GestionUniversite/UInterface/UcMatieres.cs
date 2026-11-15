@@ -16,6 +16,7 @@ public partial class UcMatieres : UserControl
     private void UcMatieres_Load(object sender, EventArgs e)
     {
         if (Outils.EstDesigner) return;
+        Droits.AppliquerEcriture(this, "Matieres");
         Charger();
     }
 
@@ -72,7 +73,7 @@ public partial class UcMatieres : UserControl
 
     private void dgvMatieres_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
     {
-        if (e.RowIndex >= 0) btnModifier_Click(sender, e);
+        if (e.RowIndex >= 0 && btnModifier.Visible) btnModifier_Click(sender, e);
     }
 
     private void btnSupprimer_Click(object sender, EventArgs e)

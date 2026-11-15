@@ -17,6 +17,7 @@ public partial class UcStructure : UserControl
     private void UcStructure_Load(object sender, EventArgs e)
     {
         if (Outils.EstDesigner) return;
+        Droits.AppliquerEcriture(this, "Structure");
         ChargerFilieres();
         ChargerNiveaux();
         ChargerAnnees();

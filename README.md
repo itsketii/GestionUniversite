@@ -34,6 +34,7 @@ Projet réalisé dans le cadre du cours de Base de Données II (IIT, L2).
 - Connexion par e-mail et mot de passe, seuls les utilisateurs présents en base sont autorisés
 - Mots de passe stockés sous forme de hash SHA-256
 - Gestion des utilisateurs (rôles Administrateur, Scolarité, Enseignant) et changement de son propre mot de passe
+- Droits d'accès selon le rôle : menu, écrans et boutons adaptés (voir « Droits par rôle »)
 
 **Tableau de bord**
 
@@ -49,6 +50,7 @@ Projet réalisé dans le cadre du cours de Base de Données II (IIT, L2).
 **Gestion**
 
 - Étudiants : liste, recherche en direct, création, modification, suppression
+- Import d'étudiants depuis un fichier Excel : modèle fourni, contrôle de chaque ligne (formats, doublons), inscription optionnelle dans une classe, tout ou rien
 - Inscriptions : création, validation, annulation, reçu d'inscription imprimable ou en PDF
 - Classes et cours : création des classes, association des matières et des enseignants, liste de classe imprimable
 - Planification : calendrier hebdomadaire coloré par type de séance (CM, TD, TP) ou vue en liste, refus automatique des conflits de salle, d'enseignant et de classe, et des salles trop petites
@@ -66,6 +68,24 @@ Projet réalisé dans le cadre du cours de Base de Données II (IIT, L2).
 - Mode clair et mode sombre, choix conservé entre deux ouvertures
 - Page Paramètres : apparence, nom de l'établissement, compte, test de la connexion à la base
 
+### Droits par rôle
+
+| Écran                                      | Administrateur | Scolarité            | Enseignant           |
+| ------------------------------------------ | -------------- | -------------------- | -------------------- |
+| Tableau de bord, Statistiques              | Accès          | Accès                | Accès                |
+| Étudiants, Classes, Planification          | Modification   | Modification         | Lecture seule        |
+| Absences                                   | Modification   | Modification         | Modification         |
+| Inscriptions, Enseignants, Matières, Salles | Modification   | Modification         | Aucun accès          |
+| Structure académique                       | Modification   | Lecture seule        | Aucun accès          |
+| Utilisateurs                               | Modification   | Aucun accès          | Aucun accès          |
+| Paramètres                                 | Complet        | Apparence et compte  | Apparence et compte  |
+
+En lecture seule, les boutons d'ajout, de modification, de suppression et d'import sont masqués. Le menu n'affiche que les écrans autorisés.
+
+### Import d'étudiants depuis Excel
+
+Dans l'écran Étudiants, le bouton **Importer** ouvre l'assistant : téléchargement du modèle `.xlsx`, choix du fichier, contrôle de chaque ligne (champs obligatoires, dates, sexe M ou F, e-mail, doublons dans le fichier et en base), puis import en une seule transaction. Les lignes en erreur sont ignorées ; il est possible d'inscrire les étudiants importés dans une classe de l'année active.
+
 ## Technologies
 
 | Domaine             | Choix                                                                      |
@@ -73,6 +93,7 @@ Projet réalisé dans le cadre du cours de Base de Données II (IIT, L2).
 | Langage             | C#                                                                         |
 | Interface           | Windows Forms (.NET 8), composants dessinés sur mesure                    |
 | Icônes             | FontAwesome.Sharp                                                          |
+| Fichiers Excel | ClosedXML |
 | Base de données    | SQL Server                                                                 |
 | Accès aux données | Microsoft.Data.SqlClient, procédures stockées et requêtes paramétrées |
 
@@ -154,7 +175,7 @@ Tables : AnneeAcademique, Filiere, Niveau, Classe, Etudiant, Inscription, Enseig
    ```
 
 2. Dans SSMS, exécuter dans l'ordre les scripts du dossier `Database/`.
-3. Ouvrir `GestionUniversite.sln` dans Visual Studio. Les paquets NuGet (`Microsoft.Data.SqlClient`, `FontAwesome.Sharp`) sont restaurés automatiquement.
+3. Ouvrir `GestionUniversite.sln` dans Visual Studio. Les paquets NuGet (`Microsoft.Data.SqlClient`, `FontAwesome.Sharp`, `ClosedXML`) sont restaurés automatiquement.
 4. Dans `GestionUniversite/DataAccess/DbConnexion.cs`, adapter le nom du serveur :
 
    ```csharp
@@ -191,8 +212,8 @@ L'export PDF utilise l'imprimante Windows « Microsoft Print to PDF », présent
 - [X] Étudiants, inscriptions, classes et cours, planification, absences
 - [X] Référentiels : enseignants, matières, salles, structure académique, utilisateurs
 - [X] Export CSV, impression, PDF, mode sombre, paramètres
-- [ ] Gestion des droits selon le rôle de l'utilisateur
-- [ ] Import d'étudiants depuis un fichier Excel
+- [X] Gestion des droits selon le rôle de l'utilisateur
+- [X] Import d'étudiants depuis un fichier Excel
 
 ## Équipe
 
