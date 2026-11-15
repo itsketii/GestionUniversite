@@ -161,9 +161,12 @@ Tables : AnneeAcademique, Filiere, Niveau, Classe, Etudiant, Inscription, Enseig
 
 ### Compte de départ
 
-| E-mail       | Mot de passe |
-| ------------ | ------------ |
-| admin@iit.ci | Admin@2026   |
+| E-mail                          | Mot de passe  | Actif |
+| ------------------------------- | ------------- | ----- |
+| admin@iit.ci                    | Admin@2026    | Oui   |
+| SERVICE SCOLARITE               | ServSco@2026  | Oui   |
+| ANANGAMAN SEDRICK GAËL KOUAGNI | Sk@07bbpr08   | Oui   |
+| Compte Test                     | compte@test01 | Non   |
 
 À changer dès la première utilisation (Paramètres, Changer mon mot de passe).
 
